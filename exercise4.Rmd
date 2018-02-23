@@ -1,0 +1,119 @@
+---
+title: "Exercise 4"
+output: statsr:::statswithr_lab
+author: Jacob John
+---
+
+<div id="instructions">
+Complete all **Exercises**, and submit answers to **VtopBeta**
+</div>
+
+## Datasets
+
+```{r echo = FALSE, results = 'asis'}
+library(caret)
+library(knitr)
+kable(iris[1:5,1:5], caption = "Iris dataset for training and testing")
+
+```
+
+## Split it into training set and testing set and validation set
+
+```{r data, message = FALSE}
+ir_data=iris
+set.seed(100)
+head(ir_data)
+intrain <- createDataPartition(y = ir_data$Species, p= 0.7, list = FALSE)
+training<-iris[intrain,]
+testing<-ir_data[-intrain,]
+dim(training);dim(testing)
+summary(ir_data)
+training[["Species"]] = factor(training[["Species"]])
+trctrl <- trainControl(method = "repeatedcv", number = 10, repeats = 3)
+```
+
+The results of confusion matrix show that this time the accuracy on the test set is __95.56%__.
+
+## Support Vector Machine
+```{r SVM, message = FALSE}
+set.seed(3233)
+svm_Linear <- train(Species ~., data = training,	method = "svmLinear",trControl=trctrl,preProcess = c("center",	"scale"),tuneLength = 10)
+svm_Linear
+test_pred <- predict(svm_Linear, newdata = testing)
+test_pred
+confusionMatrix(test_pred, testing$Species )
+
+grid <- expand.grid(C = c(0,0.01, 0.05, 0.1, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2,5))
+set.seed(3233)
+
+svm_Linear_Grid <- train(Species ~ ., data = training,	method = "svmLinear",trControl=trctrl,preProcess = c("center","scale"),tuneGrid=grid,tuneLength = 10)
+svm_Linear_Grid
+plot(svm_Linear_Grid)
+test_pred_grid <- predict(svm_Linear_Grid, newdata = testing)
+test_pred_grid
+confusionMatrix(test_pred_grid, testing$Species )
+```
+
+## Random forest
+```{r random, message = FALSE}
+library(randomForest)
+model <- randomForest(Species ~., data = training)
+pred <- predict(model, newdata = testing)
+table(pred, testing$Species)
+(15+14+15)/nrow(testing) #change this according to the diagonal element of the previous statement result 
+plot(model)
+```
+
+So __97.77778%__ accuracy is found
+
+## Naive Bayes
+```{r naive, message = FALSE}
+library(e1071)
+model <- naiveBayes(Species ~., data = training)
+class(model)
+summary(model)
+print(model)
+preds <- predict(model, newdata = training)
+table(preds,training$Species)
+(35+33+32)/(35+33+2+32+3)#change this according to the diagonal element of the previous statement result 
+```
+
+So __95.2381%__ accuracy is found by this method.
+
+## Decision tree
+```{r dt, message = FALSE}
+dtree_fit <- train(Species ~., data = training, method = "rpart",parms = list( split = "information"),trControl=trctrl,tuneLength = 10)
+dtree_fit
+library(rpart.plot)
+library(RColorBrewer)
+prp(dtree_fit$finalModel, box.palette = "Reds", tweak = 1.2)
+test_pred <- predict(dtree_fit, newdata = testing)
+preds <- predict(model, newdata = training)
+table(preds,training$Species)
+(35+33+32)/(33+35+2+3+32)#change this according to the diagonal element of the previous statement result
+```
+
+__95.2381%__ Accuracy was found in this method.
+
+## K Nearest Neighbors
+```{r knn, message = FALSE}
+trctrl <- trainControl(method = "repeatedcv", number = 10, repeats = 3)
+set.seed(3333)
+knn_fit <- train(Species ~., data = training, method = "knn",
+                   	trControl=trctrl,
+                   	preProcess =	c("center", "scale"),
+                   	tuneLength =	10)
+knn_fit
+plot(knn_fit)
+test_pred <- predict(knn_fit, newdata = testing)
+test_pred
+confusionMatrix(test_pred, testing$Species)
+```
+
+So __97.78%__ Accuracy was found using this method.
+
+## Inference
+
+
+So according to accuracy results __"KNN and Random Forest"__ performs the best on this dataset.
+

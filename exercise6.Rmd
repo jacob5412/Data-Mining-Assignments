@@ -1,0 +1,43 @@
+---
+title: "Exercise 6"
+output: statsr:::statswithr_lab
+author: Jacob John
+---
+
+<div id="instructions">
+Complete all **Exercises**, and submit answers to **VtopBeta**
+</div>
+
+
+##Loading the dataset
+```{r echo = FALSE, results = 'asis'}
+library(caret)
+library(knitr)
+library(mlbench)
+kable(iris[1:5,1:5], caption = "Iris dataset for clustering")
+ggplot(iris, aes(Petal.Length, Petal.Width, color = Species)) + geom_point()
+```
+
+
+##K-means
+
+Since the initial cluster assignments are random, let us set the seed to ensure reproducibility.
+
+```{r random, message = FALSE}
+set.seed(20)
+irisCluster <- kmeans(iris[,3:4],3,nstart=20)
+irisCluster
+```
+
+
+Based on the above results, three species dominate the clusters. We then ask the algorithm to group the data into 3 clusters. 
+```{r table, message = FALSE}
+#Comparing clusters with the species
+table(irisCluster$cluster, iris$Species)
+irisCluster$cluster <- as.factor(irisCluster$cluster)
+ggplot(iris, aes(Petal.Length, Petal.Width, color = irisCluster$cluster)) + geom_point()
+```
+
+
+##Inference
+The data belonging to the setosa species got grouped into cluster 3, versicolor into cluster 2, and virginica into cluster 1.

@@ -1,0 +1,15 @@
+﻿Color ,Type ,Doors ,Tyres ,Class 
+Red ,SUV ,2,Whitewall ,No 
+Blue ,Minivan ,4,Whitewall ,Yes 
+Green ,Car ,4,Whitewall ,Yes 
+Red ,Minivan ,4,Blackwall ,No 
+Green ,Car ,2,Blackwall ,No 
+Green ,SUV ,4,Blackwall ,Yes 
+Blue ,SUV ,2,Blackwall ,Yes 
+Blue ,Car ,2,Whitewall ,Yes 
+Red ,SUV ,2,Blackwall ,No 
+Blue ,Car ,4,Blackwall ,Yes 
+Green ,SUV ,4,Whitewall ,Yes 
+Red ,Car ,2,Blackwall ,No 
+Green ,SUV ,2,Blackwall ,Yes 
+Green ,Minivan ,4,Whitekwall ,No 

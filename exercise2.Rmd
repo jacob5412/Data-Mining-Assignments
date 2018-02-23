@@ -1,0 +1,93 @@
+---
+title: "Exercise 2"
+output: statsr:::statswithr_lab
+author: Jacob John
+---
+
+<div id="instructions">
+Complete all **Exercises**, and submit answers to **VtopBeta**
+</div>
+
+
+
+##Create Dataset
+1) Create a csv file with at least 20 entries on the following attributes:<br />
+Name Nominal<br />
+Age 1…100<br />
+Experience 1…15<br />
+
+2) Remove values of Experience and Fill with "NA".
+
+3) Replace few entries of Age with >100 values.
+
+4) Print the dataset using R
+
+
+```{r display, message = FALSE}
+displaytable<-readRDS("exercisetwo.rds")
+displaytable
+```
+
+##Missing data
+
+1) Display the content of the dataset by removing the missing value tuples.
+
+```{r noNA, message = FALSE}
+exercise<-readRDS("exercisetwo.rds")
+exercise[complete.cases(exercise),]
+```
+
+2) Calculate the mean of the attribute without considering the missing values.
+
+```{r mean, message = FALSE}
+data_mean <- mean(exercise$Age,na.rm=TRUE)
+data_mean
+```
+
+3) Display the content of the dataset by replacing the 'NA' with mean of the attribute.
+
+```{r display_content, message = FALSE}
+exercisedata<-readRDS("exercisetwo.rds")
+exercisedata$Experience[is.na(exercisedata$Experience)] <- mean(exercisedata$Experience,na.rm = TRUE)
+exercisedata
+```
+
+##Outlier Detection
+
+###Method 1
+
+4) Replace the age value above 100 with "NA" and print the current dataset.
+
+```{r replaceNA, message = FALSE}
+exercisedata$Age[exercisedata$Age>100] <- NA
+exercisedata
+```
+
+5) Replace the "NA" in age with Mean of age.
+```{r replaceNAmean, message = FALSE}
+exercisedata$Age[is.na(exercisedata$Age)] <- data_mean
+exercisedata
+```
+
+###Method 2
+
+6) Use the same dataset and change the value of age to lie outside the range of 100.
+Apply box plot and scatter plot to find the outliers.
+
+```{r boxplot, message = FALSE}
+exercisedata$Age[is.na(exercisedata$Age)==data_mean] <- 145
+exercisedata
+boxplot(exercisedata$Age)
+plot(exercisedata)
+plot(exercisedata$Age)
+```
+
+##Redundancy Check
+7) Repeat the experience column as new attribute Exp. Find the correlation between age, Exp & experience.
+
+```{r redundancy, message = FALSE}
+exercisedata$Exp <- exercisedata$Experience
+exercisedata
+corf <- cor(data.frame(exercisedata$Age,exercisedata$Experience,exercisedata$Exp))
+corf
+```

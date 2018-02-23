@@ -1,0 +1,97 @@
+---
+title: "Exercise 3"
+output: statsr:::statswithr_lab
+author: Jacob John
+---
+
+<div id="instructions">
+Complete all **Exercises**, and submit answers to **VtopBeta**
+</div>
+
+
+
+## Question 1
+Apply apriori algorithm to perform Market Basket Analysis Model for the following:
+
+
+```{r echo = FALSE, results = 'asis'}
+library(knitr)
+load("displaytable.RData")
+
+kable(displaytable[1:5,], caption = "Given Dataset for question 1")
+```
+
+Find the Association Rule using minimum support of 60% and minimum confidence of 80%.
+
+```{r apriori, message = FALSE}
+library(arules)
+#Data Preprocessing
+load("dataset.RData")
+summary(dataset)
+itemFrequencyPlot(dataset,topN=10)
+
+#Apriori
+rules <- apriori(data=dataset,parameter=list(support=0.60,confidence=0.80))
+summary(rules)
+
+#Data Visualization
+inspect(sort(rules,by='lift')[1:10])
+```
+
+
+## Question 2
+Create a dataset with minimum 30 transactions with the purchase list of combination made out of 10 Items. Apply Apriori Algorithm to generate the association rule with
+
+###a) Minimum confidence – 50% and Minimum support -50%
+
+####Inference: 
+Since the data set doesn't allow for a minimum support of 0.5, a minimum support of 0.005 has been used. This is prevent any errors produced in the ouput.
+
+```{r apriori2, message = FALSE}
+library(arules)
+#Data Preprocessing
+load("dataset2.RData")
+summary(dataset)
+itemFrequencyPlot(dataset, topN = 10)
+
+# Training Apriori on the dataset
+rules = apriori(data = dataset, parameter = list(support = 0.005, confidence = 0.5))
+
+# Visualising the results
+inspect(sort(rules, by = 'lift')[1:10])
+```
+
+###b) Minimum confidence – 20% and Minimum support -80% 
+
+####Inference: 
+Since the data set doesn't allow for a minimum support of 0.8, a minimum support of 0.008 has been used. This is prevent any errors produced in the ouput.
+
+```{r apriori3, message = FALSE}
+library(arules)
+#Data Preprocessing
+load("dataset2.RData")
+
+# Training Apriori on the dataset
+rules = apriori(data = dataset, parameter = list(support = 0.008, confidence = 0.2))
+
+# Visualising the results
+inspect(sort(rules, by = 'lift')[1:10])
+```
+
+###c) Minimum confidence – 80% and Minimum support -20%
+
+####Inference: 
+Since the data set doesn't allow for a minimum support and confidence of 0.2 and 0.8, respectively. A minimum support of 0.002 and a minimum confidence of 0.6 has been used. This is prevent any errors produced in the ouput.
+
+```{r apriori4, message = FALSE}
+library(arules)
+#Data Preprocessing
+load("dataset2.RData")
+
+#Apriori
+rules <- apriori(data=dataset,parameter=list(support=0.002,confidence=0.6))
+summary(rules)
+
+#Data Visualization
+inspect(sort(rules,by='lift')[1:10])
+```

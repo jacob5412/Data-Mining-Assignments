@@ -1,0 +1,51 @@
+---
+title: "Exercise 5"
+output: statsr:::statswithr_lab
+author: Jacob John
+---
+
+<div id="instructions">
+Complete all **Exercises**, and submit answers to **VtopBeta**
+</div>
+
+## Datasets
+
+```{r echo = FALSE, results = 'asis'}
+library(caret)
+library(knitr)
+library(mlbench)
+kable(iris[1:5,1:5], caption = "Iris dataset for training and testing")
+
+```
+
+## Visualization
+
+Using Iris dataset to perform a comparative analysis on the various classification algorithms and projecting the result on which performs well using visualization techniques.
+
+```{r visual, message = FALSE}
+control <- trainControl(method="repeatedcv",number=10,repeats=3)
+set.seed(7)
+fit.svm <- train(Species~., data=iris, method="svmRadial", trControl=control)
+set.seed(7)
+fit.knn <- train(Species~., data=iris, method="knn", trControl=control)
+set.seed(7)
+fit.rf <- train(Species~., data=iris, method="rf", trControl=control)
+set.seed(7)
+fit.nb <- train(Species~., data=iris, method="nb", trControl=control)
+set.seed(7)
+fit.decisionTree <- train(Species~., data=iris, method="treebag", trControl=control)
+results <- resamples(list(DecisionTree=fit.decisionTree,NaiveBayes=fit.nb, SVM=fit.svm, KNN=fit.knn, RF=fit.rf))
+summary(results)
+scales <- list(x=list(relation="free"), y=list(relation="free"))
+bwplot(results,scales=scales)
+densityplot(results, scales=scales, pch = "|")
+dotplot(results, scales=scales)
+parallelplot(results)
+splom(results)
+diffs <- diff(results)
+summary(diffs)
+```
+
+## Inference:
+Based on the above results using the visualization techniques, we can say that KNN and Naïve Bayes are more efficient  and the Decision Tree is less efficient when compared to other classifiers.
+
