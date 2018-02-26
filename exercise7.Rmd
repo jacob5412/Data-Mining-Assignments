@@ -1,0 +1,144 @@
+---
+title: "Exercise 7"
+output: statsr:::statswithr_lab
+author: Jacob John
+---
+
+<div id="instructions">
+Complete all **Exercises**, and submit answers to **VtopBeta**
+</div>
+
+
+##Introduction
+
+###Working
+
+* Put each data point in its own cluster
+* Identify the closest two clusters and combine them into one cluster
+* Repeat till the above step till all the data points are in a single cluster
+
+###Determining clusters
+* Complete linkage clustering: Find the maximum possible distance between two points belonging to two different clusters.
+* Single linkage clustering: Find the minimum possible distance between points belonging to two different clusters.
+* Mean linkage clustering: Find all possible pairwise distances for points belonging to two different clusters and then calculate the average.
+
+###Datasets
+
+```{r echo = FALSE, results = 'asis'}
+library(knitr)
+library(ggplot2)
+kable(iris[1:5,1:5], caption = "Iris dataset for clustering")
+```
+
+
+##Clustering
+
+We know there are 3 species of flowers.
+
+###Complete linkage clustering method
+
+_hclust_ requires data to be provided in the form of a distance
+
+```{r complete, message = FALSE}
+clusters <- hclust(dist(iris[, 3:4])) #dist is used to produce this matrix
+
+plot(clusters, 
+     xlab = "Distance Matrix of Petal.Length and Petal.Width", 
+     ylab = "Height", 
+     main = "Dendogram for Iris Dataset using complete linkage")
+```
+
+
+###Clusters - 3 or 4
+
+Based on the above result, the best choice for clusters are either 3 or 4.
+To do this, we can cut off the tree at the desired number of clusters using _cuttree_.
+
+
+```{r table, message = FALSE}
+clusterCutThree <- cutree(clusters, 3) #Creating three clusters
+clusterCutFour <- cutree(clusters, 4) #Creating four clusters
+
+#Comparing clusters with original species
+table(clusterCutThree,iris$Species)
+table(clusterCutFour,iris$Species)
+
+#Creating a scatterplot
+plot <- ggplot(iris, 
+               aes(Petal.Length, Petal.Width, color = Species)) + geom_point()
+
+plot + labs(title = "Scatter plot of Iris Dataset",
+            x = "Petal Length",
+            y = "Petal Width")
+```
+
+As shown in the above graph, the ideal number of clusters would be three, since there are three species. 
+
+It looks like the algorithm successfully classified all the flowers of species setosa into cluster 1, and virginica into cluster 2, but had trouble with versicolor. This is because based on the scatterplot, virginica and versicolor have similar measurments.
+
+
+###Mean linkage method
+```{r mean, message = FALSE}
+clusters <- hclust(dist(iris[, 3:4]), 
+                   method = 'average')
+plot(clusters, 
+     xlab = "Distance Matrix of Petal.Length and Petal.Width", 
+     ylab = "Height", 
+     main = "Dendogram for Iris Dataset using Mean linkage method")
+```
+
+
+###Clusters - 3 or 5
+
+We can see that the two best choices for number of clusters are either 3 or 5. Let us use _cutree_ to bring it down to 3 and 5 clusters.
+```{r cluster, message = FALSE}
+clusterCutThree <- cutree(clusters, 3)
+clusterCutFive <- cutree(clusters, 5)
+
+table(clusterCutThree, iris$Species)
+table(clusterCutFive, iris$Species)
+```
+
+We can see that this time, the algorithm did a much better job of clustering the data, only going wrong with 6 of the data points.
+
+```{r clusterplot, message = FALSE}
+plot <- ggplot(iris, aes(Petal.Length, Petal.Width, color = iris$Species)) + 
+        geom_point(col = clusterCutThree) + 
+        scale_color_manual(values = c('black', 'red', 'green'))
+
+plot + labs(title = "Scatter plot of Iris Dataset",
+            x = "Petal Length",
+            y = "Petal Width")
+```
+
+###Single linkage method
+```{r single, message = FALSE}
+clusters <- hclust(dist(iris[, 3:4]), 
+                   method = 'single')
+plot(clusters, 
+     xlab = "Distance Matrix of Petal.Length and Petal.Width", 
+     ylab = "Height", 
+     main = "Dendogram for Iris Dataset using Single linkage method")
+```
+
+
+###Clusters - 2
+
+We can see that the two best choices for number of clusters is 2. Let us use _cutree_ to bring it down to 2 clusters.
+
+```{r cluster_2, message = FALSE}
+clusterCutTwo <- cutree(clusters, 2)
+
+table(clusterCutTwo, iris$Species)
+
+plot <- ggplot(iris, aes(Petal.Length, Petal.Width, color = iris$Species)) + 
+        geom_point(col = clusterCutTwo) + 
+        scale_color_manual(values = c('black', 'red',))
+
+plot + labs(title = "Scatter plot of Iris Dataset",
+            x = "Petal Length",
+            y = "Petal Width")
+```
+
+##Inference
+The best method would be __mean linkage clustering__ because it divided the species into three even clusters.
