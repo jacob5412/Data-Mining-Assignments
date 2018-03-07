@@ -2,6 +2,10 @@
 
 This repository contains all the data mining assignments under Prof. Archana T at VIT University for the CSE3019 lab as of Winter'18.
 
+## Exercises
+
+
+
 ## Authors
 
 * **Jacob John** - *Initial work* - [jacobjohn2016](github.com/jacobjohn2016/)
