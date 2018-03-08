@@ -1,0 +1,33 @@
+---
+title: "Exercise 8"
+output: statsr:::statswithr_lab
+author: Jacob John
+---
+
+<div id="instructions">
+Complete all **Exercises**, and submit answers to **VtopBeta**
+</div>
+
+
+##Introduction
+
+*Note:* Install BIRCH package given in the "Birch" subfolder before you start this exercise.
+
+###Working
+
+This function creates a CF-Tree not unlike that described in Zhang et al. (1997), and used in Harrington and Salibian-Barrera (2010). A complete explanation of this package is given in Harrington and Salibian-Barrera (2008).
+
+
+###Datasets
+
+```{r echo = FALSE, results = 'asis'}
+library(knitr)
+library(ggplot2)
+kable(iris[1:5,1:5], caption = "Iris dataset for clustering")
+```
+
+
+```{r complete, message = FALSE}
+##
+```
+
