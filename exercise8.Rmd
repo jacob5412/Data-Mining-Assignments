@@ -18,16 +18,32 @@ Complete all **Exercises**, and submit answers to **VtopBeta**
 This function creates a CF-Tree not unlike that described in Zhang et al. (1997), and used in Harrington and Salibian-Barrera (2010). A complete explanation of this package is given in Harrington and Salibian-Barrera (2008).
 
 
-###Datasets
+##Datasets
 
-```{r echo = FALSE, results = 'asis'}
-library(knitr)
-library(ggplot2)
-kable(iris[1:5,1:5], caption = "Iris dataset for clustering")
+```{r data, message = FALSE}
+## Create a data set
+library(birch)
+library(MASS)
+set.seed(1234) 
+x <- mvrnorm(1e5, mu=rep(0,5), Sigma=diag(1,5))
+x <- rbind(x, mvrnorm(1e5, mu=rep(10,5), Sigma=diag(0.1,5)+0.9))
 ```
 
-
-```{r complete, message = FALSE}
-##
+##Creating a BIRCH object
+```{r object, message = FALSE}
+## Creating object
+birchObj <- birch(x, 5, keeptree = TRUE)
+birchObj
 ```
 
+##Leaving a tree in memory
+```{r memory, message = FALSE}
+## Leaving a tree in memory
+birch.addToTree(x, birchObj)
+
+birchObj <- birch.getTree(birchObj)
+birchObj
+
+## And don't forget to killTree...
+birch.killTree(birchObj)
+```

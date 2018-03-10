@@ -161,59 +161,47 @@ $(document).ready(function () {
 <h3>Working</h3>
 <p>This function creates a CF-Tree not unlike that described in Zhang et al. (1997), and used in Harrington and Salibian-Barrera (2010). A complete explanation of this package is given in Harrington and Salibian-Barrera (2008).</p>
 </div>
-<div id="datasets" class="section level3">
-<h3>Datasets</h3>
-<table>
-<caption>Iris dataset for clustering</caption>
-<thead>
-<tr class="header">
-<th align="right">Sepal.Length</th>
-<th align="right">Sepal.Width</th>
-<th align="right">Petal.Length</th>
-<th align="right">Petal.Width</th>
-<th align="left">Species</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="right">5.1</td>
-<td align="right">3.5</td>
-<td align="right">1.4</td>
-<td align="right">0.2</td>
-<td align="left">setosa</td>
-</tr>
-<tr class="even">
-<td align="right">4.9</td>
-<td align="right">3.0</td>
-<td align="right">1.4</td>
-<td align="right">0.2</td>
-<td align="left">setosa</td>
-</tr>
-<tr class="odd">
-<td align="right">4.7</td>
-<td align="right">3.2</td>
-<td align="right">1.3</td>
-<td align="right">0.2</td>
-<td align="left">setosa</td>
-</tr>
-<tr class="even">
-<td align="right">4.6</td>
-<td align="right">3.1</td>
-<td align="right">1.5</td>
-<td align="right">0.2</td>
-<td align="left">setosa</td>
-</tr>
-<tr class="odd">
-<td align="right">5.0</td>
-<td align="right">3.6</td>
-<td align="right">1.4</td>
-<td align="right">0.2</td>
-<td align="left">setosa</td>
-</tr>
-</tbody>
-</table>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">##</code></pre></div>
 </div>
+<div id="datasets" class="section level2">
+<h2>Datasets</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Create a data set
+<span class="kw">library</span>(birch)
+<span class="kw">library</span>(MASS)
+<span class="kw">set.seed</span>(<span class="dv">1234</span>) 
+x &lt;-<span class="st"> </span><span class="kw">mvrnorm</span>(<span class="fl">1e5</span>, <span class="dt">mu=</span><span class="kw">rep</span>(<span class="dv">0</span>,<span class="dv">5</span>), <span class="dt">Sigma=</span><span class="kw">diag</span>(<span class="dv">1</span>,<span class="dv">5</span>))
+x &lt;-<span class="st"> </span><span class="kw">rbind</span>(x, <span class="kw">mvrnorm</span>(<span class="fl">1e5</span>, <span class="dt">mu=</span><span class="kw">rep</span>(<span class="dv">10</span>,<span class="dv">5</span>), <span class="dt">Sigma=</span><span class="kw">diag</span>(<span class="fl">0.1</span>,<span class="dv">5</span>)<span class="op">+</span><span class="fl">0.9</span>))</code></pre></div>
+</div>
+<div id="creating-a-birch-object" class="section level2">
+<h2>Creating a BIRCH object</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Creating object
+birchObj &lt;-<span class="st"> </span><span class="kw">birch</span>(x, <span class="dv">5</span>, <span class="dt">keeptree =</span> <span class="ot">TRUE</span>)
+birchObj</code></pre></div>
+<pre><code>## Birch Tree
+## Built with radius = 5 and compact = 5 
+## Number of leaves: 384 
+## Number of underlying observations: 200000 
+## NB: x is a birch 'skeleton'. No data currently loaded into the object.
+##  See ?birch for more details.</code></pre>
+</div>
+<div id="leaving-a-tree-in-memory" class="section level2">
+<h2>Leaving a tree in memory</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Leaving a tree in memory
+<span class="kw">birch.addToTree</span>(x, birchObj)</code></pre></div>
+<pre><code>## Birch Tree
+## Built with radius = 5 and compact = 5 
+## Number of leaves: 477 
+## Number of underlying observations: 400000 
+## NB: x is a birch 'skeleton'. No data currently loaded into the object.
+##  See ?birch for more details.</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">birchObj &lt;-<span class="st"> </span><span class="kw">birch.getTree</span>(birchObj)
+birchObj</code></pre></div>
+<pre><code>## Birch Tree
+## Built with radius = 5 and compact = 5 
+## Number of leaves: 477 
+## Number of underlying observations: 400000</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## And don't forget to killTree...
+<span class="kw">birch.killTree</span>(birchObj)</code></pre></div>
+<pre><code>## NULL</code></pre>
 </div>
 
 
