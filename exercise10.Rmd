@@ -1,0 +1,75 @@
+---
+title: "Exercise 7"
+output: statsr:::statswithr_lab
+author: Jacob John
+---
+
+<div id="instructions">
+Complete all **Exercises**, and submit answers to **VtopBeta**
+</div>
+
+
+##Introduction
+
+##Datasets
+
+Using the iris dataset to compare the various Distance Measures found in Clustering – Euclidean distance, Manhattan Distance, Jaccard coefficient, Cosine distance and edit.
+
+```{r echo = FALSE, results = 'asis'}
+library(knitr)
+library(ggplot2)
+kable(iris[1:5,3:5], caption = "Iris dataset for finding distance matrices")
+```
+
+
+##Dist function
+
+The *dist* function computes and returns the distance matrix computed by using the specified distance measure to compute the distances between the rows of a data matrix.
+
+```{r complete, message = FALSE}
+
+# Euclidean Distance
+euclid_dist <- as.matrix(dist(iris[, 3:4], 
+                              method = "euclidean", 
+                              upper = TRUE, 
+                              diag = TRUE))
+euclid_dist[1:10,1:7]
+
+# Manhattan Distance
+man_dist <- as.matrix(dist(iris[, 3:4], 
+                              method = "manhattan", 
+                              upper = TRUE, 
+                              diag = TRUE))
+man_dist[1:10,1:10]
+
+```
+
+
+##Distance function
+The *distance()* function implemented in philentropy is able to compute 46 different distances/similarities between probability density functions (see *?philentropy::distance* for details).
+
+```{r philentropy, message = FALSE}
+library(philentropy)
+
+# Cosine distance
+cos_dist <- as.matrix(distance(iris[,3:4], 
+                               method = "cosine"))
+cos_dist[1:6,1:7]
+
+# Jaccard similarity
+jac_sim <- as.matrix(distance(iris[,3:4], 
+                               method = "jaccard"))
+jac_sim[1:6,1:6]
+
+```
+
+
+##Approximate String Distances
+
+Compute the approximate string distance between character vectors. The distance is a generalized Levenshtein (edit) distance, giving the minimal possibly weighted number of insertions, deletions and substitutions needed to transform one string into another.
+
+```{r edit, message = FALSE}
+#Edit Distance
+edit_dist <- as.matrix(adist(iris[,5])) #y = NULL (default) indicating taking x as y
+edit_dist[48:60,1:12]
+```
