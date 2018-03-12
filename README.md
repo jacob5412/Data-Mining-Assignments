@@ -24,8 +24,8 @@ This repository contains all the data mining assignments under Prof. Archana T a
     * Complete linkage
     * Single linkage
     * Mean linkage
-8. [BIRCH clustering](https://1drv.ms/b/s!AvHB-7DND-1vgv9nqS-V3RiWOZZ1Ww)
-9. CURE clustering
+8. [Princple Component Analysis (PCA)](https://1drv.ms/b/s!AvHB-7DND-1vgv9nqS-V3RiWOZZ1Ww)
+9. [Locality Sensitive Hashing (LSH)](https://1drv.ms/b/s!AvHB-7DND-1vg4FTmkEAan6-hBGXwg)
 10. [Comparison of distance measures](https://1drv.ms/b/s!AvHB-7DND-1vgv9kNmyMlhzoGNV04Q)
     * Euclidean distance
     * Manhattan distance
