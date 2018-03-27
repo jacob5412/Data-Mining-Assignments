@@ -182,6 +182,7 @@ Therefore, with the given data it, there exists no apparent trend between having
 
 ### Conclusion
 
+From the given graphs, we find that The values lie between the ratios “3” and “9”. The values are neither positive nor negative. Thus we can say that there is no relation between having a health plan and the number of days their daily activity is affected by poor mental or physical health.
 
 ### Research quesion 2
 
@@ -365,3 +366,6 @@ In summary,
 table(data.frame(hr_strk$toldhi2,hr_strk$cvdstrk3,hr_strk$cvdinfr4))
 ```
 
+## Conclusion
+
+From the readings, we can see that There is an extremely weak correlation between heart attacks and drinking in the last 30 days. But, high cholesterol does affect your chances of getting a heart attack.When there is too much cholesterol in your blood, it builds up in the walls of your arteries, causing a process called atherosclerosis, a form of heart disease. The arteries become narrowed and bloodflow to the heart muscle is slowed down or blocked. The blood carries oxygen to the heart, and if not enough blood and oxygen reach your heart, you may suffer chest pain. If the blood supply to a portion of the heart is completely cut off by a blockage, the result is a heart attack. [(Source)](https://www.webmd.com/heart-disease/guide/heart-disease-lower-cholesterol-risk)
