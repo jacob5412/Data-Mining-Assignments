@@ -32,6 +32,10 @@ This repository contains all the data mining assignments under Prof. Archana T a
     * Jaccard distance
     * Cosine distance
 
+## Project
+
+[Exploring the BRFSS data](https://github.com/jacobjohn2016/Data-Mining-Assignments/tree/master/Project)
+
 ## Instructions
 The links above are **.html** files that need to be downloaded offline and opened using a web browser on a desktop computer.
 
