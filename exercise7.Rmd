@@ -26,7 +26,6 @@ Complete all **Exercises**, and submit answers to **VtopBeta**
 
 ```{r echo = FALSE, results = 'asis'}
 library(knitr)
-library(ggplot2)
 kable(iris[1:5,1:5], caption = "Iris dataset for clustering")
 ```
 
@@ -40,6 +39,7 @@ We know there are 3 species of flowers.
 _hclust_ requires data to be provided in the form of a distance
 
 ```{r complete, message = FALSE}
+library(ggplot2)
 clusters <- hclust(dist(iris[, 3:4])) #dist is used to produce this matrix
 
 plot(clusters, 

@@ -20,7 +20,6 @@ Principal component analysis is a method of extracting important variables (in f
 
 ```{r echo = FALSE, results = 'asis'}
 library(knitr)
-library(ggplot2)
 kable(iris[1:5,1:5], caption = "Iris dataset for clustering")
 ```
 
@@ -30,6 +29,7 @@ Notice that in the following code we apply a log transformation to the continuou
 
 ```{r log transform, message = FALSE}
 # log transform 
+library(ggplot2)
 log.ir <- log(iris[, 1:4])
 ir.species <- iris[, 5]
 ```

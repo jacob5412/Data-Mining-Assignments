@@ -231,7 +231,8 @@ $(document).ready(function () {
 <div id="complete-linkage-clustering-method" class="section level3">
 <h3>Complete linkage clustering method</h3>
 <p><em>hclust</em> requires data to be provided in the form of a distance</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">clusters &lt;-<span class="st"> </span><span class="kw">hclust</span>(<span class="kw">dist</span>(iris[, <span class="dv">3</span><span class="op">:</span><span class="dv">4</span>])) <span class="co">#dist is used to produce this matrix</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
+clusters &lt;-<span class="st"> </span><span class="kw">hclust</span>(<span class="kw">dist</span>(iris[, <span class="dv">3</span><span class="op">:</span><span class="dv">4</span>])) <span class="co">#dist is used to produce this matrix</span>
 
 <span class="kw">plot</span>(clusters, 
      <span class="dt">xlab =</span> <span class="st">&quot;Distance Matrix of Petal.Length and Petal.Width&quot;</span>, 

@@ -213,6 +213,7 @@ $(document).ready(function () {
 <p>We will apply PCA to the four continuous variables and use the categorical variable to visualize the PCs later.</p>
 <p>Notice that in the following code we apply a log transformation to the continuous variables</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># log transform </span>
+<span class="kw">library</span>(ggplot2)
 log.ir &lt;-<span class="st"> </span><span class="kw">log</span>(iris[, <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>])
 ir.species &lt;-<span class="st"> </span>iris[, <span class="dv">5</span>]</code></pre></div>
 </div>

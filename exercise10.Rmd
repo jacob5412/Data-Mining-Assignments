@@ -17,7 +17,6 @@ Using the iris dataset to compare the various Distance Measures found in Cluster
 
 ```{r echo = FALSE, results = 'asis'}
 library(knitr)
-library(ggplot2)
 kable(iris[1:5,3:5], caption = "Iris dataset for finding distance matrices")
 ```
 

@@ -13,20 +13,20 @@ This repository contains all the data mining assignments under Prof. Archana T a
     * Naive Bayes
     * Random Forest
     * Decision Tree
-5. [Comparative analysis on Classification algorithms](https://1drv.ms/b/s!AvHB-7DND-1vgv44-X4SXAxj5XJcxQ)
+5. [Comparative analysis on Classification algorithms](http://rpubs.com/jacobjohn2016/375943)
     * KNN
     * SVM
     * Naive Bayes
     * Random Forest
     * Tree Bag
-6. [K-means](https://1drv.ms/b/s!AvHB-7DND-1vgv5dFfHb1zKshtdiuQ)
-7. [Hierarchical clustering](https://1drv.ms/b/s!AvHB-7DND-1vgv52hdfZDqHpEvp-nw)
+6. [K-means](http://rpubs.com/jacobjohn2016/375945)
+7. [Hierarchical clustering](http://rpubs.com/jacobjohn2016/375946)
     * Complete linkage
     * Single linkage
     * Mean linkage
-8. [Princple Component Analysis (PCA)](https://1drv.ms/b/s!AvHB-7DND-1vgv9nqS-V3RiWOZZ1Ww)
-9. [Locality Sensitive Hashing (LSH)](https://1drv.ms/b/s!AvHB-7DND-1vg4FTmkEAan6-hBGXwg)
-10. [Comparison of distance measures](https://1drv.ms/b/s!AvHB-7DND-1vgv9kNmyMlhzoGNV04Q)
+8. [Princple Component Analysis (PCA)](http://rpubs.com/jacobjohn2016/375948)
+9. [Locality Sensitive Hashing (LSH)](http://rpubs.com/jacobjohn2016/375950)
+10. [Comparison of distance measures](http://rpubs.com/jacobjohn2016/375951)
     * Euclidean distance
     * Manhattan distance
     * Jaccard distance

@@ -8,12 +8,14 @@ author: Jacob John
 Complete all **Exercises**, and submit answers to **VtopBeta**
 </div>
 
+```{r}
+## Loading Packages
+library(knitr)
+library(ggplot2)
+```
 
 ##Loading the dataset
 ```{r echo = FALSE, results = 'asis'}
-library(caret)
-library(knitr)
-library(mlbench)
 kable(iris[1:5,1:5], caption = "Iris dataset for clustering")
 ggplot(iris, aes(Petal.Length, Petal.Width, color = Species)) + geom_point()
 ```
