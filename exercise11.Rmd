@@ -1,0 +1,63 @@
+---
+title: "Exercise 11"
+output: statsr:::statswithr_lab
+author: Jacob John
+---
+
+<div id="instructions">
+Complete all **Exercises**, and submit answers to **VtopBeta**
+</div>
+
+
+##Linear Regression
+
+The steps to create the relationship is −
+
+* Carry out the experiment of gathering a sample of observed values of height and corresponding weight.
+
+* Create a relationship model using the _lm()_ functions in R.
+
+* Find the coefficients from the model created and create the mathematical equation using these
+
+* Get a summary of the relationship model to know the average error in prediction. Also called residuals.
+
+* To predict the weight of new persons, use the _predict()_ function in R.
+
+###Create Relationship Model
+```{r}
+# The predictor variable
+x <- c(151, 174, 138, 186, 128, 136, 179, 163, 152, 131)
+
+# The response variable
+y <- c(63, 81, 56, 91, 47, 57, 76, 72, 62, 48)
+
+# Apply the lm() function.
+relation <- lm(y~x)
+relation
+
+```
+
+###Get the Summary of the Relationship
+```{r}
+summary(relation)
+```
+
+###Predict
+```{r}
+# Find y for an x of 170.
+a <- data.frame(x=170)
+result <- predict(relation,a)
+result
+```
+
+###Plots
+```{r}
+# Plot the chart.
+plot(x,y,
+     col = "blue",
+     main = "Linear Regression",
+     abline(lm(y~x)),
+     cex = 1.3,pch = 16)
+
+plot(lm(y~x))
+```
