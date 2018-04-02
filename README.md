@@ -5,9 +5,9 @@ This repository contains all the data mining assignments under Prof. Archana T a
 ## Exercises
 
 1. [Introduction to R](https://1drv.ms/b/s!AvHB-7DND-1vgv479vVbABIbvorRKA)
-2. [Outlier Detection](https://1drv.ms/b/s!AvHB-7DND-1vgv45JluJsp3_tSXw0g)
-3. [Market Basket Analysis - Apriori](https://1drv.ms/b/s!AvHB-7DND-1vgv48iZx2vySPJzCeCw)
-4. [Classification algorithms](https://1drv.ms/b/s!AvHB-7DND-1vgv46vWOy15Iz-IaSlw)
+2. [Outlier Detection](http://rpubs.com/jacobjohn2016/375913)
+3. [Market Basket Analysis - Apriori](http://rpubs.com/jacobjohn2016/375921)
+4. [Classification algorithms](http://rpubs.com/jacobjohn2016/375907)
     * KNN
     * SVM
     * Naive Bayes

@@ -10,9 +10,14 @@ Complete all **Exercises**, and submit answers to **VtopBeta**
 
 ## Datasets
 
-```{r echo = FALSE, results = 'asis'}
+```{r}
+### load packages
 library(caret)
 library(knitr)
+```
+
+```{r echo = FALSE, results = 'asis'}
+
 kable(iris[1:5,1:5], caption = "Iris dataset for training and testing")
 
 ```
