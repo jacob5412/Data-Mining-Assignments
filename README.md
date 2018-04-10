@@ -31,6 +31,7 @@ This repository contains all the data mining assignments under Prof. Archana T a
     * Manhattan distance
     * Jaccard distance
     * Cosine distance
+11. [Linear Regression](http://rpubs.com/jacobjohn2016/375968)
 
 ## Project
 
