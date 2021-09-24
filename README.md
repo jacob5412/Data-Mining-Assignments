@@ -42,7 +42,7 @@ The links above are **.html** files that need to be downloaded offline and opene
 
 ## Authors
 
-* **Jacob John** - *Initial work* - [jacobjohn2016](github.com/jacobjohn2016/)
+* **Jacob** - *Initial work* - [jacob5412](github.com/jacob5412/)
 
 ## Acknowledgments
 
